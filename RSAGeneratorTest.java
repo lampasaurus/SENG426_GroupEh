@@ -1,9 +1,25 @@
+package eCheque;
+
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-public class TestJunit {
+
+import static org.junit.Assert.*;
+
+import java.security.KeyPair;
+import java.security.NoSuchAlgorithmException;
+public class TestRSAGenerator {
    @Test
-   public void testAdd() {
-      String str= "Junit is working fine";
-      assertEquals("Junit is working fine",str);
+   public void RSAGenerator() {
+      RSAGenerator keyGen = new RSAGenerator();
+      assertNotNull(keyGen);
+   }
+   @Test
+   public void TestGenerateRSAKeys() {
+      RSAGenerator keyGen = new RSAGenerator();
+      try {
+		KeyPair RSAKeys = keyGen.GenerateRSAKeys();
+	  } catch (NoSuchAlgorithmException e) {
+		e.printStackTrace();
+		assertEquals(1,0);  //By throwing an error this test is failed
+	  }
    }
 }
