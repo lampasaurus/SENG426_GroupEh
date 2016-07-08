@@ -129,7 +129,12 @@ public class DigitalCertificateTest extends TestCase {
      */
     public void testSetGetPublicKey() {
         System.out.println("setPublicKey");
-        PublicKey x = null;
+        /* Generate public/private key pair */
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+        SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+        keyGen.initialize(1024, random);
+        KeyPair pair = keyGen.generateKeyPair();
+        PublicKey x = pair.getPublic();
         PublicKey y = null;
         
         DigitalCertificate instance = new DigitalCertificate();
@@ -145,7 +150,7 @@ public class DigitalCertificateTest extends TestCase {
      */
     public void testSetGetIssuerSignature() {
         System.out.println("setIssuerSignature");
-        byte[] x = null;
+        byte[] x = new byte[] { 0xA5 };
         byte[] y = null;
         
         DigitalCertificate instance = new DigitalCertificate();
