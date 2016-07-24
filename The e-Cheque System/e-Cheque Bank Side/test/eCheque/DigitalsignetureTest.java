@@ -71,8 +71,8 @@ public class DigitalsignetureTest extends TestCase {
      */
     public void testVerifySignature() throws Exception {
         System.out.println("verifySignature");
-        byte[] messagesign = null;
         String message = "Test of verifySignature method, of class Digitalsigneture.";
+        String badMessage = "Test of bad method, of class Digitalsigneture.";
         Digitalsigneture instance = new Digitalsigneture();
         boolean result;
         
@@ -91,11 +91,11 @@ public class DigitalsignetureTest extends TestCase {
         byte[]signature = signmessage.sign();
         
         /* Check signature */
-        result = instance.verifySignature(messagesign, message, pubKey);
+        result = instance.verifySignature(signature, message, pubKey);
         assertTrue(result);
 		  
 		  /* Check for failure on mismatched message */
-		  result = instance.verifySignature(messagesign, badMessage, pubKey);
+		  result = instance.verifySignature(signature, badMessage, pubKey);
 		  assertFalse(result);
     }
     
