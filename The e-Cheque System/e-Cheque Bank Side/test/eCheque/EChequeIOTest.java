@@ -5,65 +5,97 @@
  */
 package eCheque;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.KeyPair;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *
- * @author Tristan
+ * @author Chris
  */
 public class EChequeIOTest {
-    
-    public EChequeIOTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
+	   @Test
+	   public void Testsavecheque() {
+		   //Test the savecheque(ECheque obj,String filename) method by saving a check, then confirming it was saved
+		   
+		   //Construct and save cheque
+           EChequeIO drawCheque = new EChequeIO();
+           ECheque chequeObj = new ECheque();
+           chequeObj.setaccountNumber("#YOLOSWAG420");
+           chequeObj.setaccountholder("Christopher Life");
+           chequeObj.setbankname("HSBC");
+           chequeObj.setchequeNumber("123456789");
+           chequeObj.setamountofMony("69");
+           chequeObj.setcurrencytype("US $");
+           chequeObj.setearnday("2016,07,24");
+           chequeObj.setpayToOrderOf("Donald Trump");
+           chequeObj.setguaranteed(true);
+           try {
+			drawCheque.savecheque(chequeObj,"\\My Cheques\\"+chequeObj.getchequeNumber()+".sec");
+           } catch (IOException e) {
+			assertEquals(0,1);
+           }
+           
+           // Check if the file exists, then close the file
+           try {
+			InputStream in = new FileInputStream("\\My Cheques\\"+chequeObj.getchequeNumber()+".sec");
+			assertNotNull(in);
+   	        in.close();
+           } catch (IOException e) {
+   			assertEquals(0,1);
+           }	
+           
 
-    /**
-     * Test of savecheque method, of class EChequeIO.
-     */
-    @Test
-    public void testSavecheque() throws Exception {
-        System.out.println("savecheque");
-        ECheque obj = new ECheque();
-        obj.setaccountNumber("testSavecheque");
-        String filename = "testSavecheque";
-        EChequeIO instance = new EChequeIO();
-        instance.savecheque(obj, filename);
-        
-        testReadcheque(filename);
-    }
-
-    /**
-     * Test of readcheque method, of class EChequeIO.
-     */
-    @Test
-    public void testReadcheque(String filename) throws Exception {
-        System.out.println("readcheque");        
-        EChequeIO instance = new EChequeIO();
-        
-        ECheque result = instance.readcheque(filename);
-        assertEquals(filename, result.getaccountNumber());
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+	   }
+	   @Test
+	   public void Testreadcheque() {
+		   //Test the readcheque(String filename) method by ....
+		   
+		 //Construct and save cheque
+           EChequeIO drawCheque = new EChequeIO();
+           ECheque wCheque = new ECheque();
+           wCheque.setaccountNumber("#YOLOSWAG420");
+           wCheque.setaccountholder("Christopher Life");
+           wCheque.setbankname("HSBC");
+           wCheque.setchequeNumber("123456789");
+           wCheque.setamountofMony("69");
+           wCheque.setcurrencytype("US $");
+           wCheque.setearnday("2016,07,24");
+           wCheque.setpayToOrderOf("Donald Trump");
+           wCheque.setguaranteed(true);
+           try {
+			drawCheque.savecheque(wCheque,"\\My Cheques\\"+wCheque.getchequeNumber()+".sec");
+           } catch (IOException e) {
+			assertEquals(0,1);
+           }
+           //Read the same cheque to verify data
+	       EChequeIO loadCheq = new EChequeIO();
+	       try {
+			ECheque rCheque = loadCheq.readcheque("\\My Cheques\\"+wCheque.getchequeNumber()+".sec");
+	        assertEquals(wCheque.getMoney(), rCheque.getMoney());
+	        assertEquals(wCheque.getaccountholder(), rCheque.getaccountholder());
+	        assertEquals(wCheque.getaccountNumber(), rCheque.getaccountNumber());
+	        assertEquals(wCheque.getbankname(), rCheque.getbankname());
+	        assertEquals(wCheque.getpayToOrderOf(), rCheque.getpayToOrderOf());
+	        assertEquals(wCheque.getcurrencytype(), rCheque.getcurrencytype());
+	        assertEquals(wCheque.getchequeNumber(), rCheque.getchequeNumber());
+	        assertEquals(wCheque.getguaranteed(), rCheque.getguaranteed());
+	        assertEquals(wCheque.getearnday(), rCheque.getearnday());
+	       } catch (ClassNotFoundException | IOException e) {
+				assertEquals(0,1);
+	       }
+	   }  
+	   @Test
+	   public void TestEChequeIO() {
+		   //Test the EChequeIO() constructor by constructing an EChequeIO object and checking null
+		   EChequeIO cheque = new EChequeIO();
+		   assertNotNull(cheque);
+	   }
 }
