@@ -5,16 +5,17 @@
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
+ *
+ * @author Saad 
+ *
+ * Fixed & Updated July 25th, 2016
+ * By Tristan Lucas
  */
 
 package eCheque;
 
 import java.io.Serializable;
 
-/**
- *
- * @author Saad
- */
 public class EChequeRegisteration implements Serializable {
     
     private String bankName;
@@ -29,61 +30,47 @@ public class EChequeRegisteration implements Serializable {
     public EChequeRegisteration() {
     }
     
-    public void setBankName(String bName){
-        bankName = bName;
-    }
-
-       
-    public void setBankAddress(String URL){
-         bankAddress = URL;
-    }
-    
-    public void setAccountNumber(String account){
-        accountNumber = account;
-    }
-    
-    public void setClientName(String cName){
-        clientName = cName;
-    }
-    
-    public void setEWalletLoaction(String path){
-        eWalletLocation = path;
-    }
-    
-    public void setUsername(int hashValue){
-        userNameHash = hashValue;
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }       
+    public void setBankAddress(String bankAddress) {
+        this.bankAddress = bankAddress;
+    }    
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }    
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }    
+    public void setEWalletLocation(String eWalletLocation) {
+        this.eWalletLocation = eWalletLocation;
+    }    
+    public void setUserName(int userNameHash) {
+        this.userNameHash = userNameHash;
+    }    
+    public void setPasword(int passwordHash) {
+        this.passwordHash = passwordHash;
     }
     
-    public void setPasword(int hashValue){
-        passwordHash = hashValue;
-    }
-    
-    public String getBankName(){
+    public String getBankName() {
         return bankName;
     }
-
-    public String getBankAddress(){
+    public String getBankAddress() {
          return bankAddress;
-    }
-    
-    public String getAccountNumber(){
+    }    
+    public String getAccountNumber() {
         return accountNumber;
-    }
-    
-    public String getClientName(){
+    }    
+    public String getClientName() {
         return clientName;
-    }
-    
-    public String getEWalletLoaction(){
+    }    
+    public String getEWalletLocation() {
         return eWalletLocation;
-    }
-    
-    public int getUsername(){
+    }    
+    public int getUserName() {
         return userNameHash;
-    }
-    
-    public int getPasword(){
+    }    
+    public int getPasword() {
         return passwordHash;
-    }
-    
+    }    
 }
