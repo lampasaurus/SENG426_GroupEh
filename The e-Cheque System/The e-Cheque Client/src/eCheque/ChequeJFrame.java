@@ -612,7 +612,6 @@ public class ChequeJFrame extends javax.swing.JFrame {
                                    chequeObj.setaccountholder(eChequeReg.getClientName());
                                    chequeObj.setbankname(eChequeReg.getBankName());
                                    chequeObj.setchequeNumber(jLSerialNumber.getText());
-                                   chequeObj.setamountofMony(jTAmount.getText());
                                    chequeObj.setcurrencytype("US $");
                                    chequeObj.setamountofMony(jTAmount.getText());
                                    chequeObj.setearnday(year+","+month+","+day);
